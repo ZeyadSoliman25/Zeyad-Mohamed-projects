@@ -1,5 +1,5 @@
 # Zeyad-Mohamed-projects
-Welcome to my projects repository! This repository contains a diverse collection of my personal and academic projects spanning multiple domains, including Python, C/C++, embedded systems, and web development. Below is an overview of the contents and structure of the repository.
+Welcome to my projects repository! This repository contains a diverse collection of my personal and academic projects spanning multiple domains, including Python, C/C++, embedded systems, data analysis using python and web development. Below is an overview of the contents and structure of the repository.
 
 Repository Structure:
 - Python Projects
