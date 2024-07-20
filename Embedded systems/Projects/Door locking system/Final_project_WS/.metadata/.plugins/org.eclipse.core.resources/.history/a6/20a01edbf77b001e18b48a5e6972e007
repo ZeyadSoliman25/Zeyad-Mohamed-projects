@@ -1,0 +1,141 @@
+/*
+ * main_MC1.c
+ *
+ *  Created on: Nov 4, 2023
+ *      Author: Zeyad Mohamed
+ */
+#include "lcd.h"
+#include "keypad.h"
+#include "uart.h"
+#include "timer.h"
+#include <avr/io.h>
+#include <util/delay.h>
+
+
+#define PASSWORD_SIZE 		5
+
+typedef enum {
+	SYSTEM_ON, SYSTEM_LOCKED, CHANGE_PASSWORD, CORRECT_PASSWORD, PASSWORD_SAVED, REENTER_PASSWORD
+}instructions;
+
+uint8 instruction_check_pass = 0;
+uint8 instruction_new_pass = 0;
+uint8 count_lock = 0;
+uint8 system_lock = SYSTEM_LOCKED;
+
+
+void new_password(void){
+	uint8 password_num = 0;
+	uint8 i = 0;
+
+	while (instruction_new_pass != PASSWORD_SAVED){
+		LCD_clearScreen();
+		LCD_moveCursor(0,0);
+		LCD_displayString("plz enter pass: ");
+		LCD_moveCursor(1,0);
+
+		for (i=0; i<PASSWORD_SIZE; i++){
+			password_num = KEYPAD_getPressedKey();
+			LCD_displayCharacter('*');
+			UART_sendByte(password_num);
+			_delay_ms(15);
+		}
+		while (KEYPAD_getPressedKey() != '=');
+		UART_sendByte('=');
+
+		LCD_clearScreen();
+		LCD_moveCursor(0,0);
+		LCD_displayString("plz re-enter the");
+		LCD_moveCursor(1,0);
+		LCD_displayString("same pass: ");
+		for (i=0; i<PASSWORD_SIZE; i++){
+			password_num = KEYPAD_getPressedKey();
+			LCD_displayCharacter('*');
+			UART_sendByte(password_num);
+			_delay_ms(15);
+		}
+
+		while (KEYPAD_getPressedKey() != '=');
+		UART_sendByte('=');
+
+		instruction_new_pass = UART_recieveByte();
+	}
+}
+
+
+void Check_Pass(void){
+	uint8 pass_num = 0;
+	uint8 i = 0;
+
+	while ((instruction_check_pass != CORRECT_PASSWORD) | (instruction_check_pass != SYSTEM_LOCKED)){
+		LCD_clearScreen();
+		LCD_moveCursor(0,0);
+		LCD_displayString("plz enter pass:");
+		LCD_moveCursor(1,0);
+		for (i=0; i<PASSWORD_SIZE; i++){
+			pass_num = KEYPAD_getPressedKey();
+			LCD_displayCharacter('*');
+			UART_sendByte(pass_num);
+		}
+		while (KEYPAD_getPressedKey() != '=');
+		UART_sendByte('=');
+		instruction_check_pass = UART_recieveByte();
+	}
+}
+
+void lock_system(void){
+	if (count_lock == 10){
+		count_lock = 0;
+		system_lock = SYSTEM_ON;
+	}
+	else {
+		count_lock ++;
+	}
+}
+
+int main(void){
+	UART_ConfigType uart_configurations = {9600,EIGHT_BIT,DISABLED,ONE_BIT};
+	Timer1_ConfigType timer1_configurations = {0,100,FCPU_1024,CTC};
+
+	uint8 option = 0;
+
+	UART_init(&uart_configurations);
+	Timer1_init(&timer1_configurations);
+
+	LCD_init();
+
+	new_password();
+	instruction_new_pass = 0;
+
+	while (1){
+		LCD_clearScreen();
+		LCD_moveCursor(0,0);
+		LCD_displayString("+ : Open Door");
+		LCD_moveCursor(1,0);
+		LCD_displayString("- : Change Pass");
+		option = KEYPAD_getPressedKey();
+
+		if (option == '+'){
+			UART_sendByte('+');
+			Check_Pass();
+			if (instruction_check_pass == SYSTEM_LOCKED){
+				LCD_clearScreen();
+				LCD_moveCursor(0,0);
+				LCD_displayString("SYSTEM LOCKED");
+				Timer1_setCallBack(lock_system);
+				SREG |= (1<<7);
+				while (system_lock != SYSTEM_ON);
+				SREG &= ~(1<<7);
+				instruction_check_pass = SYSTEM_ON;
+			}
+		}
+		else if (option == '-'){
+			UART_sendByte('-');
+			LCD_clearScreen();
+			LCD_moveCursor(0,0);
+			LCD_displayString("plz enter pass:");
+			LCD_moveCursor(1,0);
+			_delay_ms(5000);
+		}
+	}
+}

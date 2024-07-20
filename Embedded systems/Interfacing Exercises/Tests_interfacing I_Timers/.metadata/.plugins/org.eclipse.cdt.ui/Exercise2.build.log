@@ -1,0 +1,35 @@
+21:13:08 **** Build of configuration Debug for project Exercise2 ****
+make all 
+Building file: ../main.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega32 -DF_CPU=1000000UL -MMD -MP -MF"main.d" -MT"main.o" -c -o "main.o" "../main.c"
+Finished building: ../main.c
+ 
+Building target: libExercise2.a
+Invoking: AVR Archiver
+avr-ar -r  "libExercise2.a"  ./main.o  
+c:\WinAVR-20100110\bin\avr-ar.exe: creating libExercise2.a
+Finished building target: libExercise2.a
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S libExercise2.a  >"libExercise2.lss"
+Finished building: libExercise2.lss
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega32 libExercise2.a
+AVR Memory Usage
+----------------
+Device: atmega32
+
+Program:       0 bytes (0.0% Full)
+(.text + .data + .bootloader)
+
+Data:          0 bytes (0.0% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+
+21:13:08 Build Finished. 0 errors, 0 warnings. (took 366ms)
+

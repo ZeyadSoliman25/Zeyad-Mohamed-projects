@@ -1,0 +1,53 @@
+#include "lcd.h"
+#include "lm35_sensor.h"
+#include "dc_motor.h"
+#include "adc.h"
+#include "std_types.h"
+
+
+int main (){
+	uint8 temperature = 0;
+	ADC_ConfigType ADC_Configurations = {F_CPU_8, INTERNAL_VOLT_REF};
+
+	LCD_init();
+	DcMotor_Init();
+	ADC_init(&ADC_Configurations);
+
+	LCD_displayString("FAN is OFF");
+	LCD_moveCursor(1,0);
+
+	while(1){
+		LCD_moveCursor(1,0);
+		temperature = LM35_getTemperature();
+		LCD_displayString("Temp = ");
+		LCD_intgerToString(temperature);
+		LCD_displayString(" C");
+
+		if (temperature >= 120){
+			LCD_moveCursor(0,0);
+			LCD_displayString("FAN is ON");
+			DcMotor_Rotate(clockwise, 100);
+		}
+		else if (temperature >= 90){
+			LCD_moveCursor(0,0);
+			LCD_displayString("FAN is ON");
+			DcMotor_Rotate(clockwise, 75);
+		}
+		else if (temperature >= 60){
+			LCD_moveCursor(0,0);
+			LCD_displayString("FAN is ON");
+			DcMotor_Rotate(clockwise, 50);
+		}
+		else if (temperature >= 30){
+			LCD_moveCursor(0,0);
+			LCD_displayString("FAN is ON");
+			DcMotor_Rotate(clockwise, 25);
+		}
+		else {
+			LCD_moveCursor(0,0);
+			LCD_displayString("FAN is OFF");
+			DcMotor_Rotate(off, 0);
+		}
+
+	}
+}

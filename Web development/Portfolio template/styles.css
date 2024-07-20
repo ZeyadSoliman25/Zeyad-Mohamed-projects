@@ -1,0 +1,188 @@
+css
+Copy code
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #4B0082; /* Purple background color */
+    padding: 10px 20px;
+}
+
+.left-section {
+    color: white;
+}
+
+.left-section h1 {
+    margin: 0;
+    font-size: 1.5em;
+}
+
+.left-section p {
+    margin: 5px 0 0 0;
+}
+
+.left-section img {
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+.right-section ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 20px;
+}
+
+.right-section ul li {
+    margin: 0;
+}
+
+.right-section ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1em;
+}
+
+.right-section ul li a:hover {
+    font-weight: bold;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+section {
+    padding: 20px;
+}
+
+#about .profile {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+#about .profile img {
+    width: 150px; /* Adjust the size as needed */
+    height: 150px;
+    border-radius: 50%;
+}
+
+#about .profile-text {
+    max-width: 600px;
+}
+
+#about .profile-text h2 {
+    color: #4B0082; /* Same purple color as the navbar */
+    font-size: 2em;
+}
+
+#about .profile-text p {
+    color: #333;
+    font-size: 1em;
+    line-height: 1.5em;
+}
+
+#skills {
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+
+#skills h2 {
+    text-align: center;
+    color: #4B0082; /* Same purple color as the navbar */
+}
+
+.skills-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.skill {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    text-align: center;
+    width: 150px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.skill img {
+    width: 50px;
+    height: 50px;
+}
+
+.skill p {
+    margin: 10px 0 0;
+    color: #333;
+}
+
+.skill p:first-of-type {
+    font-weight: bold;
+    color: #4B0082; /* Same purple color as the navbar */
+}
+
+/* Projects Section */
+#projects {
+    background-color: #f0f0f0;
+    padding: 20px;
+}
+
+#projects h2 {
+    text-align: center;
+    color: #4B0082; /* Same purple color as the navbar */
+}
+
+.projects-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.project {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    text-align: center;
+    width: 250px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.project img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.project h3 {
+    color: #4B0082; /* Same purple color as the navbar */
+    font-size: 1.5em;
+    margin: 10px 0;
+}
+
+.project p {
+    color: #333;
+    font-size: 1em;
+    line-height: 1.5em;
+}
+
+/* Home Icon */
+.home-icon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
+
+.home-icon img {
+    width: 50px;
+    height: 50px;
+}

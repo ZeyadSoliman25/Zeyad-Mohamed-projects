@@ -1,0 +1,23 @@
+#include "lcd.h"
+#include "lm35_sensor.h"
+#include "dc_motor.h"
+#include "adc.h"
+#include "std_types.h"
+
+
+int main (){
+	uint8 temperature = 0;
+
+	LCD_init();
+	DcMotor_Init();
+	ADC_init();
+
+	LCD_displayString("FAN is OFF");
+	LCD_moveCursor(1,0);
+
+	while(1){
+		temperature = LM35_getTemperature();
+		LCD_displayString("Temp = ");
+
+	}
+}

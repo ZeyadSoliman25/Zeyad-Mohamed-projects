@@ -1,0 +1,67 @@
+/*
+ * main.c
+ *
+ *  Created on: Sep 3, 2023
+ *      Author: Zeyad Mohamed
+ */
+
+#include<avr/io.h>
+#include <avr/interrupt.h>
+
+char disp_1 = 0;
+char disp_2 = 0;
+char segments[10] = {0x7E, 0x0C, 0xB6, 0x9E, 0xCC, 0xDA, 0xFA, 0x0E, 0xFE, 0xDE};
+char tick = 0;
+
+void Timer0_ovf(void){
+	TCCR0 = (1<<FOC0) | (1<<CS02);
+	TCNT0 = 0;
+	TIMSK |= (1<<TOIE0);
+	SREG |= (1<<7);
+}
+
+
+int main(){
+	DDRA = 0xFE;
+	DDRC |= (1<<6) | (1<<7);
+	PORTA = segments[0];
+	PORTC |= (1<<6);
+	PORTC &= ~(1<<7);
+	Timer0_ovf();
+	while(1){};
+}
+
+ISR (TIMER0_OVF_vect){
+	tick++;
+	if (tick == 250){
+		if (disp_1 < 9){
+			disp_1++;
+			PORTC |= (1<<6);
+			PORTC &= ~(1<<7);
+			PORTA = segments[disp_1];
+		}
+		else if (disp_1 == 9){
+			disp_1 = 0;
+			PORTC |= (1<<6);
+			PORTC &= ~(1<<7);
+			PORTA = segments[disp_1];
+			if (disp_2 < 9){
+				disp_2++;
+			}
+			else if (disp_2 == 9){
+				disp_2 = 0;
+			}
+		}
+		tick = 0;
+	}
+	else if (tick % 50 == 0){
+		PORTC |= (1<<7);
+		PORTC &= ~(1<<6);
+		PORTA = segments[disp_2];
+	}
+	else {
+		PORTC |= (1<<6);
+		PORTC &= ~(1<<7);
+		PORTA = segments[disp_1];
+	}
+}

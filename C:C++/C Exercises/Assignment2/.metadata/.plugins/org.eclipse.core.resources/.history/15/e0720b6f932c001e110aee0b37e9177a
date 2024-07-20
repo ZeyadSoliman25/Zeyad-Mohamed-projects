@@ -1,0 +1,38 @@
+/*
+ * q14.c
+ *
+ *  Created on: Jul 27, 2023
+ *      Author: zayedsoliman
+ */
+
+#include <stdio.h>
+
+
+void fibonacci_series (int num);
+
+
+int main(){
+	int num = 0;
+	fibonacci_series(num);
+}
+
+void fibonacci_series (int num){
+	int sum = num;
+	if (sum == 0){
+		while (sum<1){
+			printf("%d, ", num);
+			sum += 1;
+			num +=1;
+			if (sum == 2){
+				sum = 0;
+				num = 1;
+				printf("%d, ",num);
+				break;
+			}
+		}
+	}
+	sum += num;
+	printf("%d, ", sum);
+	fibonacci_series(num);
+
+}

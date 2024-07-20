@@ -1,0 +1,29 @@
+/*
+ * q8.c
+ *
+ *  Created on: Jul 26, 2023
+ *      Author: zayedsoliman
+ */
+
+#include <stdio.h>
+
+int prime(int num1,int num2);
+
+int main(){
+	int num1 = 0;
+	int num2 = 0;
+	printf("Enter two numbers: ");
+	scanf("%d %d", &num1, &num2);
+	printf("The prime numbers between intervals: \n");
+	printf("%d", prime(num1, num2));
+}
+
+int prime(num1 , num2){
+	for (int num1; num1<= num2; num1++){
+		for (int i=0; i<=num1; i++){
+			if (num1%i == 0 && num1==i){
+				return i;
+			}
+		}
+	}
+}

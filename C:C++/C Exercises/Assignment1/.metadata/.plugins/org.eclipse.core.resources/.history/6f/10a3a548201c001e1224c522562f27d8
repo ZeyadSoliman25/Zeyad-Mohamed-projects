@@ -1,0 +1,22 @@
+/*
+ * q8.c
+ *
+ *  Created on: Jul 6, 2023
+ *      Author: zayedsoliman
+ */
+
+#include <stdio.h>
+#include <math.h>
+int main(){
+	double num = 0;
+	double sqrt_num = 0;
+	printf("Enter a number: ");
+	scanf("%lf", &num);
+	sqrt_num = sqrt(num);
+	if ((num/sqrt_num) > sqrt_num){
+		printf("The number is not a perfect square.");
+	}
+	else {
+		printf("The number is a perfect square.");
+	}
+}

@@ -1,0 +1,18 @@
+22:15:45 **** Build of configuration Debug for project Q12 ****
+make all 
+Building file: ../q12.c
+Invoking: GCC C Compiler
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"q12.d" -MT"q12.o" -o "q12.o" "../q12.c"
+Finished building: ../q12.c
+ 
+Building target: Q12
+Invoking: MacOS X C Linker
+gcc  -o "Q12"  ./q12.o   
+Finished building target: Q12
+ 
+22:15:49 **** Incremental Build of configuration Debug for project Q12 ****
+make all 
+make: Nothing to be done for `all'.
+22:15:59 **** Incremental Build of configuration Debug for project Q12 ****
+make all 
+make: Nothing to be done for `all'.

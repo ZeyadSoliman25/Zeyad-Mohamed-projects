@@ -1,0 +1,16 @@
+/*
+ * Q2.c
+ *
+ *  Created on: Jul 4, 2023
+ *      Author: zayedsoliman
+ */
+
+#include <stdio.h>
+int main(){
+	char name = 0;
+	char grade = 0 ;
+	scanf("%s %c", &name, &grade);
+	printf("Hello %s \n",name);
+	printf("Nice %c grade champ\n",grade);
+
+}

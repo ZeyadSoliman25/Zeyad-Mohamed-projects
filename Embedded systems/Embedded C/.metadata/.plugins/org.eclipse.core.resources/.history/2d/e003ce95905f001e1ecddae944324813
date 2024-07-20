@@ -1,0 +1,12 @@
+#include <stdio.h>
+
+#define CLEAR_BIT(num,bitnum) (num & ~(1<<bitnum))
+
+
+int main(void){
+	int num = 3;
+	num = CLEAR_BIT(num,0);
+	printf("%d",num);
+}
+
+

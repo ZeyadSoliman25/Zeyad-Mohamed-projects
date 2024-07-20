@@ -1,0 +1,17 @@
+22:00:17 **** Incremental Build of configuration Debug for project Micro1 ****
+make all 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega32 Micro1.elf
+AVR Memory Usage
+----------------
+Device: atmega32
+
+Program:   11298 bytes (34.5% Full)
+(.text + .data + .bootloader)
+
+Data:        161 bytes (7.9% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 

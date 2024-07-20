@@ -1,0 +1,12 @@
+LaunchTargetManager/configs/Q02=org.eclipse.launchbar.core.launchTargetType.local\:Local
+LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/arch=x86_64
+LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/name=Local
+LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/os=macosx
+configDescList=org.eclipse.launchbar.core.descriptorType.default\:Q01,org.eclipse.launchbar.core.descriptorType.default\:Q02,org.eclipse.launchbar.core.descriptorType.default\:Q05,org.eclipse.launchbar.core.descriptorType.default\:Q06,org.eclipse.launchbar.core.descriptorType.default\:Q07,org.eclipse.launchbar.core.descriptorType.default\:Q08,org.eclipse.launchbar.core.descriptorType.default\:Q04,org.eclipse.launchbar.core.descriptorType.default\:Q03,org.eclipse.launchbar.core.descriptorType.default\:Q09,org.eclipse.launchbar.core.descriptorType.default\:Q10,org.eclipse.launchbar.core.descriptorType.default\:Q11,org.eclipse.launchbar.core.descriptorType.default\:Q12
+eclipse.preferences.version=1
+org.eclipse.launchbar.core.descriptorType.default\:Q01/activeLaunchMode=run
+org.eclipse.launchbar.core.descriptorType.default\:Q01/activeLaunchTarget=org.eclipse.launchbar.core.launchTargetType.local\:Local
+org.eclipse.launchbar.core.descriptorType.default\:Q03/activeLaunchMode=run
+org.eclipse.launchbar.core.descriptorType.default\:Q03/activeLaunchTarget=org.eclipse.launchbar.core.launchTargetType.local\:Local
+org.eclipse.launchbar.core.descriptorType.default\:Q11/activeLaunchMode=run
+org.eclipse.launchbar.core.descriptorType.default\:Q11/activeLaunchTarget=org.eclipse.launchbar.core.launchTargetType.local\:Local

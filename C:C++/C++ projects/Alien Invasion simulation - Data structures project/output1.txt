@@ -1,0 +1,68 @@
+Td    ID    Tj    Df    Dd    Db
+23    3    1    0    22    22
+26    2000    1    0    25    25
+26    2    1    0    25    25
+34    6    2    0    32    32
+38    11    3    22    13    35
+50    23    6    33    11    44
+60    27    7    41    12    53
+86    2001    1    26    59    85
+101    2002    1    49    51    100
+140    2003    1    49    90    139
+151    2004    2    125    24    149
+189    2005    2    125    62    187
+200    2006    2    139    59    198
+238    2007    2    157    79    236
+254    2008    3    220    31    251
+254    82    21    208    25    233
+258    83    21    214    23    237
+267    87    22    224    21    245
+271    91    23    233    15    248
+275    2010    3    236    36    272
+297    2009    3    220    74    294
+320    2011    3    252    65    317
+326    2012    4    272    50    322
+333    115    29    291    13    304
+343    119    30    302    11    313
+346    123    31    304    11    315
+374    2013    4    294    76    370
+387    2014    4    325    58    383
+421    2015    4    325    92    417
+441    2016    5    404    32    436
+441    147    37    382    22    404
+447    2018    5    417    25    442
+453    155    39    403    11    414
+467    166    42    413    12    425
+467    196    49    407    11    418
+480    2017    5    404    71    475
+====================================
+Battle_result: Draw
+====================================
+For Earth army:
+Total Es: 998
+Total Et: 953
+Total Eg: 0
+Total healed units percentage: 1.02512 %
+percentage of destructed Es: 1.60321 %
+percentage of destructed Et: 0.104932 %
+percentage of destructed Eg: -nan(ind) %
+percentage of total destructed units: 0.871348 %
+Average Df: 204.529
+Average Dd: 17.0588
+Average Db: 221.588
+Df//Db: 0.923016
+Dd/Db: 0.0769843
+====================================
+For Alien army:
+Total As: 1906
+Total Am: 45
+Total Ad: 45
+percentage of destructed As: 0.996852 %
+percentage of destructed Am: 0 %
+percentage of destructed Ad: 0 %
+percentage of total destructed units: 0.951904 %
+Average Df: 212.579
+Average Dd: 55.7368
+Average Db: 268.316
+Df//Db: 0.792271
+Dd/Db: 0.207729

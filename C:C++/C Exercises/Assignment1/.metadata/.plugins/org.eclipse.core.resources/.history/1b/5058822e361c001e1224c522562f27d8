@@ -1,0 +1,14 @@
+/*
+ * q18.c
+ *
+ *  Created on: Jul 6, 2023
+ *      Author: zayedsoliman
+ */
+
+#include <stdio.h>
+int main()
+{
+    printf("%.*s", 10, "#######################");
+
+    return 0;
+}

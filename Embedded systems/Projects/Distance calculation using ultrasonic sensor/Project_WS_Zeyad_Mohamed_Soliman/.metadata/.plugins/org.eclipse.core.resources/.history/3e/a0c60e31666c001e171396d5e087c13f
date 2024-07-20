@@ -1,0 +1,14 @@
+#include "lcd.h"
+#include "ultrasonic.h"
+
+
+int main(){
+	uint16 distance_measured = 0;
+
+	LCD_init();
+	Ultrasonic_init();
+
+	while(1){
+		distance_measured = Ultrasonic_readDistance();
+	}
+}

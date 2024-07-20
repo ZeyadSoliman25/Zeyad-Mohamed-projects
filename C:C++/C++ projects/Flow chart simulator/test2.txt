@@ -1,0 +1,6 @@
+5
+Start	0	369	52	
+ValueAssign	1	367	168	z	10.000000
+Read_Assign	2	436	289	IR
+OperaAssign	3	376	397	z	IR	*	100.000000	
+End	4	365	493	

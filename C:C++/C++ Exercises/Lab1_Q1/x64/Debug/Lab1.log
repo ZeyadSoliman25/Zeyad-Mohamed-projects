@@ -1,0 +1,3 @@
+﻿  main1.cpp
+C:\Program Files (x86)\Private_Z\My studies\Programming techniques\Labs\Lab1_Q1\main1.cpp(24,34): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  Lab1.vcxproj -> C:\Program Files (x86)\Private_Z\My studies\Programming techniques\Labs\Lab1_Q1\x64\Debug\Lab1_Q1.exe

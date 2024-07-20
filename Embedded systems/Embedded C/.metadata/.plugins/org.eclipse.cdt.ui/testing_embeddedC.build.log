@@ -1,0 +1,6 @@
+12:55:53 **** Incremental Build of configuration Debug for project testing_embeddedC ****
+make all 
+make: Nothing to be done for `all'.
+
+12:55:53 Build Finished. 0 errors, 0 warnings. (took 117ms)
+

@@ -1,0 +1,8 @@
+7
+Start	0	324	84	
+Read_Assign	1	398	201	x
+OperaAssign	2	353	314	price	x	+	5.000000	
+CondtAssign	3	420	377	price	>	10	
+WriteAssign	4	258	458	price
+ValueAssign	5	513	479	price	10.000000
+End	6	357	519	

@@ -1,0 +1,36 @@
+12:42:55 **** Incremental Build of configuration Debug for project fan_controller ****
+make all 
+Building file: ../main.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega32 -DF_CPU=1000000UL -MMD -MP -MF"main.d" -MT"main.o" -c -o "main.o" "../main.c"
+In file included from ../main.c:7:
+c:/winavr-20100110/lib/gcc/../../avr/include/util/delay.h:90:3: warning: #warning "Compiler optimizations disabled; functions from <util/delay.h> won't work as designed"
+Finished building: ../main.c
+ 
+Building target: fan_controller.elf
+Invoking: AVR C Linker
+avr-gcc -Wl,-Map,fan_controller.map -mmcu=atmega32 -o "fan_controller.elf"  ./adc.o ./dc_motor.o ./gpio.o ./lcd.o ./lm35_sensor.o ./main.o ./pwm.o   
+Finished building target: fan_controller.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S fan_controller.elf  >"fan_controller.lss"
+Finished building: fan_controller.lss
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega32 fan_controller.elf
+AVR Memory Usage
+----------------
+Device: atmega32
+
+Program:    9772 bytes (29.8% Full)
+(.text + .data + .bootloader)
+
+Data:        310 bytes (15.1% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+
+12:42:56 Build Finished. 0 errors, 1 warnings. (took 452ms)
+

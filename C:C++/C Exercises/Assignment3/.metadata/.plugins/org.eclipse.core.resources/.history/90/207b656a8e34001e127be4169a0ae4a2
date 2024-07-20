@@ -1,0 +1,34 @@
+/*
+ * q9.c
+ *
+ *  Created on: Aug 4, 2023
+ *      Author: zayedsoliman
+ */
+
+#include <stdio.h>
+
+int fibonacci_series(int num_ptr);
+
+
+int main(){
+	int number = 0;
+	int *num_ptr = &number;
+	printf("Enter the term of fibonacci series: ");
+	scanf("%d",&number);
+	fibonacci_series(num_ptr);
+	printf("The term is: %d", number);
+}
+
+
+int fibonacci_series(int num_ptr){
+	int num = 1;
+	int temp = 0;
+	int i = 0;
+	for (i = 1;i < *num_ptr; i++){
+		int sum = 0;
+		sum = num + temp;
+		temp = num;
+		num = sum;
+	}
+	return num;
+}

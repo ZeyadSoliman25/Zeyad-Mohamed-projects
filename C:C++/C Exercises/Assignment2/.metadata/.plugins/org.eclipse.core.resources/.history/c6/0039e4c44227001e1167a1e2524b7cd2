@@ -1,0 +1,16 @@
+/*
+ * q6.c
+ *
+ *  Created on: Jul 20, 2023
+ *      Author: zayedsoliman
+ */
+
+#include <stdio.h>
+int main(){
+	char x = 0;
+	char X = 0;
+	printf("Enter a lowercase letter: ");
+	scanf("%d", &x);
+	X = x + 32;
+	printf("%c", X);
+}

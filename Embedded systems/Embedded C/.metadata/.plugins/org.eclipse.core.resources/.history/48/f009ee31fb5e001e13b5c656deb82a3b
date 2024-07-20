@@ -1,0 +1,23 @@
+#include <stdio.h>
+
+
+void reverse_bytes(long num){
+	static long num2 = 0;
+	static previous = 0;
+	char mask = 0x01;
+	char i = 0;
+
+	for (i = 0; i<32; i++){
+		num2 = ((num>>i) & mask) | (num2<<(31-i));
+	}
+	printf("%x", num2);
+	previous = num2;
+}
+
+int main(void){
+	long num = 0xF0F0;
+	printf("%x", num);
+	reverse_bytes(num);
+
+}
+

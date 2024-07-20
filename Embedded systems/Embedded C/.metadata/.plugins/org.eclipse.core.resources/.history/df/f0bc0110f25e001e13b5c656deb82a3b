@@ -1,0 +1,20 @@
+#include <stdio.h>
+
+#define SUM(ARRAY,SIZE,SUM)\
+{\
+	int i = 0\
+	for (i=0;i<SIZE;i++)\
+	{\
+		SUM += ARRAY[i]\
+	}\
+}
+
+
+int main(void){
+	int array[5] = {0,1,2,3,4};
+	int sum = 0;
+	SUM(array,5,sum);
+	printf("%d",sum);
+
+}
+

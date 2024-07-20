@@ -1,0 +1,15 @@
+#include "lcd.h"
+#include "lm35_sensor.h"
+#include "dc_motor.h"
+#include "adc.h"
+
+
+int main (){
+	LCD_init();
+	DcMotor_Init();
+	ADC_init();
+
+	while(1){
+		LM35_getTemperature();
+	}
+}

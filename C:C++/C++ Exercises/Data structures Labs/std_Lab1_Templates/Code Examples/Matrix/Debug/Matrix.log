@@ -1,0 +1,3 @@
+﻿  main.cpp
+C:\Program Files (x86)\Private_Z\My studies\Data Structure and Algorithims\Labs\std_Lab1_Templates\Code Examples\Matrix\Matrix.h(22): warning C4715: 'Matrix<int>::AddValue': not all control paths return a value
+  Matrix.vcxproj -> C:\Program Files (x86)\Private_Z\My studies\Data Structure and Algorithims\Labs\std_Lab1_Templates\Code Examples\Debug\Matrix.exe

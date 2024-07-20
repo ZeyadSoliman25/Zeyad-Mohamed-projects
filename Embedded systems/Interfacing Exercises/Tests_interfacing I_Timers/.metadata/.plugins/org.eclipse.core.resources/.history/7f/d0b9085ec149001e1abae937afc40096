@@ -1,0 +1,12 @@
+/*
+ * main.c
+ *
+ *  Created on: Sep 2, 2023
+ *      Author: Zeyad Mohamed
+ */
+
+#include <avr/io.h>
+
+void Timer0_compare(void){
+	TCCR0 = (1<<FOC0)
+}

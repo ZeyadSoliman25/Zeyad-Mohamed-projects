@@ -1,0 +1,17 @@
+/*
+ * main.c
+ *
+ *  Created on: Sep 2, 2023
+ *      Author: Zeyad Mohamed
+ */
+
+#include<avr/io.h>
+
+
+void Timer0_ovf(void){
+	TCCR0 = (1<<FOC0) | (1<<CS02) | (1<<CS00);
+	TCNT0 = 134;
+	TIMSK |= (1<<TOIE0);
+	SREG |= (1<<7);
+
+}

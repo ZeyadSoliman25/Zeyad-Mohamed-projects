@@ -1,0 +1,219 @@
+/*
+ * main_MC2.c
+ *
+ *  Created on: Nov 4, 2023
+ *      Author: Zeyad Mohamed
+ */
+#include "buzzer.h"
+#include "dc_motor.h"
+#include "timer.h"
+#include "twi.h"
+#include "external_eeprom.h"
+#include "uart.h"
+#include <avr/io.h>
+#include <util/delay.h>
+#include "gpio.h"
+
+#define PASSWORD_SIZE 		5
+#define MEMORY_ADDRESS 		0x3011
+
+typedef enum {
+	SYSTEM_ON, SYSTEM_LOCKED, CHANGE_PASSWORD, CORRECT_PASSWORD, PASSWORD_SAVED, REENTER_PASSWORD
+}instructions;
+
+uint8 instruction_check_pass = 0;
+uint8 instruction_new_pass = 0;
+uint8 system_lock = SYSTEM_LOCKED;
+uint8 count_lock = 0;
+uint8 count_door = 0;
+uint8 open_door_flag = 1;
+uint8 held_door_flag = 0;
+uint8 close_door_flag = 1;
+
+void new_password(void){
+	uint16 base_address = MEMORY_ADDRESS;
+	uint8 New_Pass[PASSWORD_SIZE] = {0};
+	uint8 Confirm_Pass[PASSWORD_SIZE] = {0};
+	uint8 i = 0;
+
+	while (instruction_new_pass != PASSWORD_SAVED){
+		for (i=0; i<PASSWORD_SIZE; i++){
+			New_Pass[i] = UART_recieveByte();
+		}
+
+		while (UART_recieveByte() != '=');
+
+		for (i=0; i<PASSWORD_SIZE; i++){
+			Confirm_Pass[i] = UART_recieveByte();
+		}
+
+		while (UART_recieveByte() != '=');
+		for (i=0; i<PASSWORD_SIZE; i++){
+			if (New_Pass[i] != Confirm_Pass[i]){
+				instruction_new_pass = REENTER_PASSWORD;
+				UART_sendByte(REENTER_PASSWORD);
+				break;
+			}
+			else {
+				instruction_new_pass = PASSWORD_SAVED;
+			}
+		}
+		if (instruction_new_pass == PASSWORD_SAVED){
+			UART_sendByte(PASSWORD_SAVED);
+			for (i=0; i<PASSWORD_SIZE; i++){
+				EEPROM_writeByte(base_address+i, New_Pass[i]);
+				_delay_ms(10);
+			}
+		}
+	}
+}
+
+
+void Check_Pass(void){
+	uint16 base_address = MEMORY_ADDRESS;
+	uint8 pass[PASSWORD_SIZE] = {0};
+	uint8 saved_pass[PASSWORD_SIZE] = {0};
+	uint8 i = 0;
+	uint8 count_wrong_entries = 0;
+
+	while ((instruction_check_pass != CORRECT_PASSWORD)){
+		instruction_check_pass = CORRECT_PASSWORD;
+		for (i=0; i<PASSWORD_SIZE; i++){
+			pass[i] = UART_recieveByte();
+		}
+		while (UART_recieveByte() != '=');
+		for (i=0; i<PASSWORD_SIZE; i++){
+			EEPROM_readByte(base_address + i, &saved_pass[i]);
+			_delay_ms(10);
+		}
+
+		for (i=0; i<PASSWORD_SIZE; i++){
+			if (pass[i] != saved_pass[i]){
+				instruction_check_pass = REENTER_PASSWORD;
+			}
+		}
+
+		if (instruction_check_pass == REENTER_PASSWORD){
+			count_wrong_entries ++;
+			if (count_wrong_entries == 3){
+				UART_sendByte(SYSTEM_LOCKED);
+				instruction_check_pass = SYSTEM_LOCKED;
+				break;
+			}
+			else {
+				UART_sendByte(REENTER_PASSWORD);
+			}
+		}
+		else {
+			UART_sendByte(CORRECT_PASSWORD);
+		}
+	}
+}
+
+
+void lock_system(void){
+	if (count_lock == 60){
+		count_lock = 0;
+		system_lock = SYSTEM_ON;
+	}
+	else {
+		count_lock ++;
+	}
+}
+
+
+void open(void){
+	if (count_door == 15){
+		open_door_flag = 0;
+		count_door = 0;
+	}
+	else {
+		count_lock ++;
+	}
+}
+
+
+void held(void){
+	if (count_door == 15){
+		held_door_flag = 1;
+		count_door ++;
+	}
+	else if (count_door == 18){
+		held_door_flag = 2;
+		count_door++;
+	}
+	else if (count_door == 33){
+		held_door_flag = 3;
+		count_door ++;
+	}
+	else {
+		count_door++;
+	}
+}
+
+
+void close(void){
+	if (count_door == 15){
+		close_door_flag = 0;
+		count_door = 0;
+	}
+	else {
+		count_door++;
+	}
+}
+
+
+int main(void){
+	UART_ConfigType uart_configurations = {9600,EIGHT_BIT,DISABLED,ONE_BIT};
+	Timer1_ConfigType timer1_configurations = {0,1000,FCPU_1024,CTC};
+	TWI_ConfigType twi_configurations = {0x02, FAST};
+
+	uint8 option = 0;
+
+	UART_init(&uart_configurations);
+	Timer1_init(&timer1_configurations);
+	Buzzer_init();
+	DcMotor_Init();
+	TWI_init(&twi_configurations);
+
+	new_password();
+	instruction_new_pass = 0;
+
+	GPIO_setupPinDirection(PORTD_ID, PIN7_ID, PIN_OUTPUT);
+
+	while(1){
+		option = UART_recieveByte();
+
+		if (option == '+'){
+			Check_Pass();
+			if (instruction_check_pass == SYSTEM_LOCKED){
+				Buzzer_on();
+				Timer1_setCallBack(lock_system);
+				SREG |= (1<<7);
+				while (system_lock != SYSTEM_ON);
+				SREG &= ~(1<<7);
+				Buzzer_off();
+				instruction_check_pass = SYSTEM_ON;
+			}
+			else {
+				DcMotor_Rotate(clockwise, 100);
+				Timer1_setCallBack(held);
+				SREG |= (1<<7);
+				while (held_door_flag != 1);
+				SREG &= ~(1<<7);
+				DcMotor_Rotate(off, 0);
+				SREG |= (1<<7);
+				while (held_door_flag != 2);
+				SREG &= ~(1<<7);
+				DcMotor_Rotate(anticlockwise, 100);
+				SREG |= (1<<7);
+				while(close_door_flag != 3);
+				close_door_flag = 1;
+				SREG &= ~(1<<7);
+				DcMotor_Rotate(off, 0);
+			}
+		}
+		else if (option == '-'){
+		}
+	}
+}

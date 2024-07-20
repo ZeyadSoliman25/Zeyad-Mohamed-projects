@@ -1,0 +1,29 @@
+/*
+ * q11.c
+ *
+ *  Created on: Jul 26, 2023
+ *      Author: zayedsoliman
+ */
+
+#include <stdio.h>
+#include <math.h>
+
+void second_pow(int num);
+
+int main(){
+	int num = 0;
+	printf("Enter a number: ");
+	scanf("%d", &num);
+	second_pow(num);
+}
+
+void second_pow(int num){
+	float digit = 0;
+	digit = log(2,num);
+	if (digit%10 == 0){
+		printf("1");
+	}
+	else {
+		printf("0");
+	}
+}

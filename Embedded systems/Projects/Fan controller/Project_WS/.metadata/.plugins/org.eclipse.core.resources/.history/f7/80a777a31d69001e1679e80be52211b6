@@ -1,0 +1,19 @@
+#ifndef ADC_H_
+#define ADC_H_
+
+#include "std_types.h"
+
+typedef enum{
+	AREF_OFF, AVCC_EXTERN_CAPACITOR, RESERVED, INTERNAL_VOLT_REF
+}ADC_ ReferenceVolatge;
+
+typedef struct{
+	ADC_ReferenceVolatge ref_volt;
+	ADC_Prescaler prescaler;
+}ADC_ConfigType;
+
+void ADC_init(void);
+
+uint16 ADC_readChannel(uint8 channel_num);
+
+#endif

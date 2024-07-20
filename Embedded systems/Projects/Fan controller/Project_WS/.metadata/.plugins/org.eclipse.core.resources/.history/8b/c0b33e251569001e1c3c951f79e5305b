@@ -1,0 +1,9 @@
+#include "dc_motor.h"
+#include "gpio.h"
+#include "common_macros.h"
+#include "pwm.h"
+
+
+void DcMotor_Init(void){
+	GPIO_setupPinDirection(PORT_ID, IN1_PIN, PIN_OUTPUT);
+}

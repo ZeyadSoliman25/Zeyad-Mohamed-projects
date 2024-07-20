@@ -1,0 +1,11 @@
+/*
+ * Q1.c
+ *
+ *  Created on: Jul 4, 2023
+ *      Author: zayedsoliman
+ */
+
+#include <stdio.h>
+int main(){
+	Printf ("Hellooooo Worlddd");
+}

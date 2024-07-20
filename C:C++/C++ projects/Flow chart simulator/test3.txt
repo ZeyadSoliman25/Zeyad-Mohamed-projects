@@ -1,0 +1,9 @@
+8
+Start	0	323	62	
+ValueAssign	1	317	163	x	20.000000
+OperaAssign	2	314	337	x	y	+	10.000000	
+Read_Assign	3	382	271	y
+CondtAssign	4	390	407	x	>=	20	
+WriteAssign	5	236	495	x
+ValueAssign	6	448	504	x	10.000000
+End	7	326	531	

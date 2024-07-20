@@ -1,0 +1,41 @@
+In archive libExercise2.a:
+
+main.o:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000000  00000000  00000000  00000034  2**0
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000000  00000000  00000000  00000034  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000000  00000000  00000000  00000034  2**0
+                  ALLOC
+  3 .stab         00000300  00000000  00000000  00000034  2**2
+                  CONTENTS, RELOC, READONLY, DEBUGGING
+  4 .stabstr      00000688  00000000  00000000  00000334  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .text.Timer0_ovf_Init 00000016  00000000  00000000  000009bc  2**0
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+
+Disassembly of section .text.Timer0_ovf_Init:
+
+00000000 <Timer0_ovf_Init>:
+ *  Created on: Sep 2, 2023
+ *      Author: Zeyad Mohamed
+ */
+#include <avr/io.h>
+
+void Timer0_ovf_Init(void){
+   0:	df 93       	push	r29
+   2:	cf 93       	push	r28
+   4:	cd b7       	in	r28, 0x3d	; 61
+   6:	de b7       	in	r29, 0x3e	; 62
+	TCCR0 = (1<<FOC0) | (1<<CS02) | (1<<CS00);
+   8:	e3 e5       	ldi	r30, 0x53	; 83
+   a:	f0 e0       	ldi	r31, 0x00	; 0
+   c:	85 e8       	ldi	r24, 0x85	; 133
+   e:	80 83       	st	Z, r24
+}
+  10:	cf 91       	pop	r28
+  12:	df 91       	pop	r29
+  14:	08 95       	ret

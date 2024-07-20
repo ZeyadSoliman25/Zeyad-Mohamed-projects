@@ -1,0 +1,20 @@
+21:08:54 **** Incremental Build of configuration Debug for project Multiplexing_7seg ****
+make all 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega32 Multiplexing_7seg.elf
+AVR Memory Usage
+----------------
+Device: atmega32
+
+Program:     566 bytes (1.7% Full)
+(.text + .data + .bootloader)
+
+Data:         14 bytes (0.7% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+
+21:08:54 Build Finished. 0 errors, 0 warnings. (took 149ms)
+

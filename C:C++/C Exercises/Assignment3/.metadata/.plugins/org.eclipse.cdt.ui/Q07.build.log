@@ -1,0 +1,15 @@
+14:53:23 **** Incremental Build of configuration Debug for project Q07 ****
+make all 
+Building file: ../q7.c
+Invoking: GCC C Compiler
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"q7.d" -MT"q7.o" -o "q7.o" "../q7.c"
+Finished building: ../q7.c
+ 
+Building target: Q07
+Invoking: MacOS X C Linker
+gcc  -o "Q07"  ./q7.o   
+Finished building target: Q07
+ 
+
+14:53:23 Build Finished. 0 errors, 0 warnings. (took 212ms)
+

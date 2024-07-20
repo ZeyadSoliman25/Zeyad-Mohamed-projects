@@ -1,0 +1,59 @@
+#include "lcd.h"
+#include "lm35_sensor.h"
+#include "dc_motor.h"
+#include "adc.h"
+#include "std_types.h"
+#include <avr/io.h>
+#include <util/delay.h>
+
+
+int main (){
+	uint32 temperature = 0;
+	ADC_ConfigType ADC_Configurations = {INTERNAL_VOLT_REF, F_CPU_8};
+
+	LCD_init();
+	DcMotor_Init();
+	ADC_init(&ADC_Configurations);
+
+	DDRD |= (1<<PD1); /* to control the pin of R/W in the LCD as stated in the video*/
+	PORTD &= ~(1<<PD1);
+
+	LCD_displayString("FAN is OFF");
+	LCD_moveCursor(1,0);
+
+	while(1){
+		_delay_ms(5);
+		LCD_moveCursor(1,0);
+		temperature = LM35_getTemperature();
+		LCD_displayString("Temp = ");
+		LCD_intgerToString(temperature);
+		LCD_displayString(" C");
+
+		if (temperature >= 120){
+			LCD_moveCursor(0,0);
+			LCD_displayString("FAN is ON");
+			DcMotor_Rotate(clockwise, 100);
+		}
+		else if (temperature >= 90){
+			LCD_moveCursor(0,0);
+			LCD_displayString("FAN is ON");
+			DcMotor_Rotate(clockwise, 75);
+		}
+		else if (temperature >= 60){
+			LCD_moveCursor(0,0);
+			LCD_displayString("FAN is ON");
+			DcMotor_Rotate(clockwise, 50);
+		}
+		else if (temperature >= 30){
+			LCD_moveCursor(0,0);
+			LCD_displayString("FAN is ON");
+			DcMotor_Rotate(clockwise, 25);
+		}
+		else {
+			LCD_moveCursor(0,0);
+			LCD_displayString("FAN is OFF");
+			DcMotor_Rotate(off, 0);
+		}
+
+	}
+}
