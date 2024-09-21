@@ -2,13 +2,13 @@
 Welcome to my projects repository! This repository contains a diverse collection of my personal and academic projects spanning multiple domains, including Python, C/C++, embedded systems, data analysis using python and web development. Below is an overview of the contents and structure of the repository.
 
 Repository Structure:
-- Python Projects
+- Python Projects:
         A variety of scripts, applications, and libraries showcasing my proficiency in Python programming. These include data analysis tools, automation scripts, data scrapping and more.
-- C/C++ Projects
+- C/C++ Projects:
         Projects demonstrating my skills in systems programming with C and C++. This section includes various algorithms, data structures,           and performance-critical applications.
-- Embedded Systems
+- Embedded Systems:
         Projects involving microcontrollers, sensors, and real-time systems. These projects highlight my experience in low-level programming         and hardware interfacing.
-- Web Development
+- Web Development:
         Full-stack web applications and websites developed using various technologies such as HTML, CSS, JavaScript, and backend frameworks.         This section illustrates my capabilities in creating responsive and dynamic web applications.
   
 How to Navigate:
