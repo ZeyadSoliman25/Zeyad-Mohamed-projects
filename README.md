@@ -3,7 +3,7 @@ Welcome to my projects repository! This repository contains a diverse collection
 
 Repository Structure:
 - Python Projects
-        A variety of scripts, applications, and libraries showcasing my proficiency in Python programming. These include data analysis               tools, automation scripts, and more.
+        A variety of scripts, applications, and libraries showcasing my proficiency in Python programming. These include data analysis tools, automation scripts, data scrapping and more.
 - C/C++ Projects
         Projects demonstrating my skills in systems programming with C and C++. This section includes various algorithms, data structures,           and performance-critical applications.
 - Embedded Systems
